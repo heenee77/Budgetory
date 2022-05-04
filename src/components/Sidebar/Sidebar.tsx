@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NavLink } from "react-router-dom";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -17,8 +18,25 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const drawerWidth = 240;
+
+const sidebarMenuRoutes = [
+  {
+    id: 0,
+    label: "Home",
+    link: "/",
+    icon: <HomeIcon/>
+  },
+  {
+    id: 1,
+    label: "Expenses",
+    link: "/expenses",
+    icon: <AddShoppingCartIcon/>
+  }
+];
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
@@ -120,12 +138,20 @@ export default function Sidebar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+          {sidebarMenuRoutes.map((menuItem, index) => (
+            <ListItem button key={menuItem.id}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {menuItem.icon ? menuItem.icon : <InboxIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <NavLink to={menuItem.link}
+                style={({ isActive }) => {
+                  return {
+                    textDecoration: 'none',
+                    color: isActive ? "blue" : ""
+                  };
+                }}>
+                <ListItemText primary={menuItem.label} />
+              </NavLink>
             </ListItem>
           ))}
         </List>
