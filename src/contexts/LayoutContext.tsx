@@ -1,7 +1,10 @@
 import {FC, createContext, useState, useContext, ReactNode, Dispatch, SetStateAction} from 'react';
 export interface ILayoutContext {
     currentPage: string;
-    setCurrentPage?: Dispatch<SetStateAction<string>>;
+    isSidebarOpen: boolean;
+    setCurrentPage: Dispatch<SetStateAction<string>>;
+    handleDrawerOpen: () => void;
+    handleDrawerClose: () => void;
 }
 
 interface LayoutPageProps {
@@ -18,11 +21,22 @@ export const useLayoutContext = () => {
     return context;
 }
 
+
+
 const LayoutContextProvider: FC<LayoutPageProps> = ({children}) => {
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState("Home");
 
+    const handleDrawerOpen = () => {
+        setSidebarOpen(true);
+      };
+    
+    const handleDrawerClose = () => {
+        setSidebarOpen(false);
+    };
+
     return (
-        <LayoutContext.Provider value={{currentPage, setCurrentPage}}>
+        <LayoutContext.Provider value={{currentPage, isSidebarOpen, setCurrentPage, handleDrawerOpen, handleDrawerClose}}>
             {children}
         </LayoutContext.Provider>
     );

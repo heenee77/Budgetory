@@ -24,6 +24,8 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsIcon from '@mui/icons-material/Settings';
 
+import { useLayoutContext, ILayoutContext } from '../../contexts/LayoutContext';
+
 const drawerWidth = 240;
 
 const sidebarMenuRoutes = [
@@ -107,27 +109,20 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function Sidebar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const {isSidebarOpen, handleDrawerOpen, handleDrawerClose} = useLayoutContext() as ILayoutContext;
+  
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={isSidebarOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(isSidebarOpen && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -147,7 +142,7 @@ export default function Sidebar() {
         }}
         variant="persistent"
         anchor="left"
-        open={open}
+        open={isSidebarOpen}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -193,7 +188,7 @@ export default function Sidebar() {
           ))}
         </List>
       </Drawer>
-      <Main open={open}>
+      <Main open={isSidebarOpen}>
         <DrawerHeader />
         
       </Main>
