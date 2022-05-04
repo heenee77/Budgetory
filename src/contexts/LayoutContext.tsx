@@ -11,6 +11,8 @@ interface LayoutPageProps {
     children: ReactNode;
 }
 
+export const drawerWidth = 240;
+
 const LayoutContext = createContext<ILayoutContext | null>(null);
 
 export const useLayoutContext = () => {
@@ -20,8 +22,6 @@ export const useLayoutContext = () => {
     }
     return context;
 }
-
-
 
 const LayoutContextProvider: FC<LayoutPageProps> = ({children}) => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
