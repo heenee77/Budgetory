@@ -26,7 +26,7 @@ interface AppBarProps extends MuiAppBarProps {
 }
 
 const Header = () => {
-    const { isSidebarOpen, handleDrawerOpen } = useLayoutContext() as ILayoutContext;
+    const { currentPage, isSidebarOpen, handleDrawerOpen } = useLayoutContext() as ILayoutContext;
 
     return (
         
@@ -42,7 +42,7 @@ const Header = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-                    Persistent drawer
+                    {currentPage}
                 </Typography>
                 <Button color="inherit">Login</Button>
             </Toolbar>

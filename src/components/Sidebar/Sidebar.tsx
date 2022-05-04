@@ -62,7 +62,7 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function Sidebar() {
   const theme = useTheme();
-  const {isSidebarOpen, handleDrawerClose} = useLayoutContext() as ILayoutContext;
+  const {isSidebarOpen, handleDrawerClose, setCurrentPage} = useLayoutContext() as ILayoutContext;
 
   return (
     <>
@@ -90,6 +90,11 @@ export default function Sidebar() {
             <NavLink to={menuItem.link}
               className={({isActive}) => (isActive ? "selected-nav-link" : "")}
               style={({ isActive }) => {
+
+                if(isActive){
+                  setCurrentPage(menuItem.label);
+                }
+
                 return {
                   textDecoration: 'none',
                   color: isActive ? "blue" : "black",
@@ -111,6 +116,11 @@ export default function Sidebar() {
             <NavLink to={menuItem.link}
               className={({isActive}) => (isActive ? "selected-nav-link" : "")}
               style={({ isActive }) => {
+
+                if(isActive){
+                  setCurrentPage(menuItem.label);
+                }
+                
                 return {
                   textDecoration: 'none',
                   color: isActive ? "blue" : "black"
