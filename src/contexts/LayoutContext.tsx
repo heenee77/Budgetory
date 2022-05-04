@@ -1,39 +1,14 @@
-import {createContext, useReducer, useContext} from 'react';
-
-type TSidebarActions = "TOGGLE_SIDEBAR";
-
-export interface ILayoutContextValues {
-    sidebarProps: ISidebarProps;
-    sidebarActions: React.Dispatch<ISidebarActions>;
+import {FC, createContext, useState, useContext, ReactNode, Dispatch, SetStateAction} from 'react';
+export interface ILayoutContext {
+    currentPage: string;
+    setCurrentPage?: Dispatch<SetStateAction<string>>;
 }
 
-interface ILayoutContextProps {
-    children : JSX.Element | JSX.Element[]
+interface LayoutPageProps {
+    children: ReactNode;
 }
 
-export interface ISidebarProps {
-    isSidebarOpen: boolean;
-}
-
-interface ISidebarActions {
-    type: TSidebarActions;
-}
-
-const initialSidebarState: ISidebarProps = {
-    isSidebarOpen: true
-}
-
-const LayoutContext = createContext<ILayoutContextValues | undefined>(undefined);
-
-const sidebarReducer = (state: ISidebarProps, action: ISidebarActions) => {
-    switch (action.type){
-        case "TOGGLE_SIDEBAR":
-            return {...state, isSidebarOpen: !state.isSidebarOpen };
-        default: {
-            throw new Error(`Unhandled action type: ${action.type}`);
-        }
-    }
-}
+const LayoutContext = createContext<ILayoutContext | null>(null);
 
 export const useLayoutContext = () => {
     const context = useContext(LayoutContext);
@@ -43,11 +18,11 @@ export const useLayoutContext = () => {
     return context;
 }
 
-const LayoutContextProvider = ({children}: ILayoutContextProps) => {
-    const [sidebarState, sidebarDispatch] = useReducer(sidebarReducer, initialSidebarState);
+const LayoutContextProvider: FC<LayoutPageProps> = ({children}) => {
+    const [currentPage, setCurrentPage] = useState("Home");
 
     return (
-        <LayoutContext.Provider value={{sidebarProps: sidebarState , sidebarActions: sidebarDispatch}}>
+        <LayoutContext.Provider value={{currentPage, setCurrentPage}}>
             {children}
         </LayoutContext.Provider>
     );

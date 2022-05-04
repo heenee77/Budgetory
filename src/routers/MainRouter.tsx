@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Home from '../screens/HomePage/Home';
-import Expenses from '../screens/Expenses/Expenses';
+import HomePage from '../screens/HomePage/HomePage';
+import ExpensePage from '../screens/Expenses/ExpensePage';
+import ProfilePage from "../screens/Profile/ProfilePage";
+import SettingsPage from "../screens/Settings/SettingsPage";
 
 // components
 import Layout from '../components/Layout/Layout'
@@ -9,8 +11,10 @@ const MainRouter = () => (
 
     <Routes>
         <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="expenses" element={<Expenses />} />
+            <Route index element={<HomePage />} />
+            <Route path="expenses" element={<ExpensePage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="settings" element={<SettingsPage />} />
         </Route>
     </Routes>
 

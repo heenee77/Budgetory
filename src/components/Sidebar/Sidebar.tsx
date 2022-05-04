@@ -18,8 +18,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import WarningIcon from '@mui/icons-material/Warning';
 import HomeIcon from '@mui/icons-material/Home';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const drawerWidth = 240;
 
@@ -35,6 +38,21 @@ const sidebarMenuRoutes = [
     label: "Expenses",
     link: "/expenses",
     icon: <AddShoppingCartIcon/>
+  }
+];
+
+const sidebarUtilityRoutes = [
+  {
+    id: 0,
+    label: "Profile",
+    link: "/profile",
+    icon: <AccountBoxIcon/>
+  },
+  {
+    id: 1,
+    label: "Settings",
+    link: "/settings",
+    icon: <SettingsIcon/>
   }
 ];
 
@@ -141,7 +159,7 @@ export default function Sidebar() {
           {sidebarMenuRoutes.map((menuItem, index) => (
             <ListItem button key={menuItem.id}>
               <ListItemIcon>
-                {menuItem.icon ? menuItem.icon : <InboxIcon />}
+                {menuItem.icon ? menuItem.icon : <WarningIcon />}
               </ListItemIcon>
               <NavLink to={menuItem.link}
                 style={({ isActive }) => {
@@ -157,12 +175,20 @@ export default function Sidebar() {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
+          {sidebarUtilityRoutes.map((menuItem, index) => (
+            <ListItem button key={menuItem.id}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {menuItem.icon ? menuItem.icon : <WarningIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <NavLink to={menuItem.link}
+                style={({ isActive }) => {
+                  return {
+                    textDecoration: 'none',
+                    color: isActive ? "blue" : ""
+                  };
+                }}>
+                <ListItemText primary={menuItem.label} />
+              </NavLink>
             </ListItem>
           ))}
         </List>
