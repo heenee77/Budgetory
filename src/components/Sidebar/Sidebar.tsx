@@ -1,13 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { styled, useTheme } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
+import { useRef } from "react";
+import './Sidebar.css';
 
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import WarningIcon from '@mui/icons-material/Warning';
@@ -83,41 +85,45 @@ export default function Sidebar() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List >
           {sidebarMenuRoutes.map((menuItem, index) => (
-            <ListItem button key={menuItem.id}>
-              <ListItemIcon>
-                {menuItem.icon ? menuItem.icon : <WarningIcon />}
-              </ListItemIcon>
-              <NavLink to={menuItem.link}
-                style={({ isActive }) => {
-                  return {
-                    textDecoration: 'none',
-                    color: isActive ? "blue" : ""
-                  };
-                }}>
+            <NavLink to={menuItem.link}
+              className={({isActive}) => (isActive ? "selected-nav-link" : "")}
+              style={({ isActive }) => {
+                return {
+                  textDecoration: 'none',
+                  color: isActive ? "blue" : "black",
+                };
+              }} key={menuItem.id}>
+              <ListItemButton>
+                <ListItemIcon>
+                  {menuItem.icon ? menuItem.icon : <WarningIcon />}
+                </ListItemIcon>
+                
                 <ListItemText primary={menuItem.label} />
-              </NavLink>
-            </ListItem>
+              </ListItemButton>
+            </NavLink>
           ))}
         </List>
         <Divider />
         <List>
           {sidebarUtilityRoutes.map((menuItem, index) => (
-            <ListItem button key={menuItem.id}>
-              <ListItemIcon>
-                {menuItem.icon ? menuItem.icon : <WarningIcon />}
-              </ListItemIcon>
-              <NavLink to={menuItem.link}
-                style={({ isActive }) => {
-                  return {
-                    textDecoration: 'none',
-                    color: isActive ? "blue" : ""
-                  };
-                }}>
+            <NavLink to={menuItem.link}
+              className={({isActive}) => (isActive ? "selected-nav-link" : "")}
+              style={({ isActive }) => {
+                return {
+                  textDecoration: 'none',
+                  color: isActive ? "blue" : "black"
+                };
+              }} key={menuItem.id}>
+              <ListItemButton>
+                <ListItemIcon>
+                  {menuItem.icon ? menuItem.icon : <WarningIcon />}
+                </ListItemIcon>
+                
                 <ListItemText primary={menuItem.label} />
-              </NavLink>
-            </ListItem>
+              </ListItemButton>
+            </NavLink>
           ))}
         </List>
       </Drawer>
