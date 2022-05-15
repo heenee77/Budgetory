@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "set DEBUG=server,server:* & nodemon --es-module-specifier-resolution=node ./server.js",
-    "debug": "set DEBUG=* & nodemon ./server.js"
+    "debug": "set DEBUG=* & nodemon ./server.js",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "eslint": "^8.15.0",
     "nodemon": "^2.0.16"
   },
   "nodemonConfig": {

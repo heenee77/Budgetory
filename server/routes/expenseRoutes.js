@@ -42,7 +42,6 @@ expenseRoutes.route("/:id").get((req, res) => {
 
 // This section will help you create a new record.
 expenseRoutes.route("/create").post((req, res) => {
-    debugger
     let db_connect = getDb();
     let timestamp = moment().format("DD/MM/YYYY");
     let expenseObj = {
@@ -107,7 +106,7 @@ expenseRoutes.route("/:id").delete((req, res) => {
 
     db_connect
         .collection("expenses")
-        .updateOne(query, expenseObj, (err, result) => {
+        .deleteOne(query, (err, result) => {
             if (err) {
                 expenseDebug(`Error deleting expense with id ${req.params.id}.`);
                 throw err;
