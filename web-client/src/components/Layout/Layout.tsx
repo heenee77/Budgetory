@@ -1,10 +1,10 @@
 // components
-import Header from "../Header/Header";
+import Header from "../Header";
 import { styled, useTheme } from '@mui/material/styles';
 import { Outlet } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Sidebar, { DrawerHeader } from "../Sidebar/Sidebar";
+import Sidebar, { DrawerHeader } from "../Sidebar";
 
 import { useLayoutContext, ILayoutContext, drawerWidth } from "../../contexts/LayoutContext";
 

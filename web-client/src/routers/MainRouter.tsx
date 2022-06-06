@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from '../screens/HomePage/HomePage';
-import ExpensePage from '../screens/Expenses/ExpensePage';
+import ExpensePage from '../screens/Expenses';
 import ProfilePage from "../screens/Profile/ProfilePage";
 import SettingsPage from "../screens/Settings/SettingsPage";
 
