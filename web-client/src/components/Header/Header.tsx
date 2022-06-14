@@ -1,6 +1,6 @@
-import { Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import { Toolbar, Typography, Button, IconButton } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useLayoutContext, ILayoutContext, drawerWidth } from '../../contexts/LayoutContext';
 

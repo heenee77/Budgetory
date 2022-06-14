@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { styled, useTheme } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
-import { useRef } from "react";
 import './Sidebar.css';
 
 import List from '@mui/material/List';

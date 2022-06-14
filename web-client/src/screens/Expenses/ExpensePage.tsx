@@ -1,7 +1,10 @@
+import ExpenseForm from "./ExpenseForm";
+
 const ExpensePage = () => {
+    
     return (
         <div className="ExpensePage">
-            <h1>Expense Page</h1>
+            <ExpenseForm></ExpenseForm>
         </div>
     )
 }
