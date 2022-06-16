@@ -43,7 +43,7 @@ expenseRoutes.route("/:id").get((req, res) => {
 // This section will help you create a new record.
 expenseRoutes.route("/create").post((req, res) => {
     let db_connect = getDb();
-    let timestamp = moment().format("DD/MM/YYYY");
+    let timestamp = moment().format("DD/MM/YYYY hh:mm A");
     let expenseObj = {
         name: req.body.name,
         expenseType: req.body.expenseType,
@@ -52,7 +52,7 @@ expenseRoutes.route("/create").post((req, res) => {
         expenseDate: req.body.expenseDate,
         userId: req.body.userId,
         currencyISO: req.body.currencyISO,
-        createdDate: req.body.createdDate,
+        createdDate: timestamp,
         lastModifiedDate: timestamp
     };
 
@@ -72,7 +72,7 @@ expenseRoutes.route("/create").post((req, res) => {
 expenseRoutes.route("/update/:id").post((req, res) => {
     let db_connect = getDb();
     let query = { _id: ObjectId( req.params.id )};
-    let timestamp = moment().format("DD/MM/YYYY");
+    let timestamp = moment().format("DD/MM/YYYY hh:mm A");
     let expenseObj = {
         $set: {
             name: req.body.name,
@@ -82,7 +82,6 @@ expenseRoutes.route("/update/:id").post((req, res) => {
             expenseDate: req.body.expenseDate,
             userId: req.body.userId,
             currencyISO: req.body.currencyISO,
-            createdDate: req.body.createdDate,
             lastModifiedDate: timestamp
         }
     };
