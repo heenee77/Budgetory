@@ -14,6 +14,7 @@ Budgetory is a budgeting app designed to keep track expenses and creating a fina
 
 ## Setup instructions
 1. Setup MongoDB cloud or local server by referring to instructions in https://www.mongodb.com/
-2. Add connection string to config.env file in server directory. 
-3. CD to server directory and run `npm start`.
-4. Open a new terminal instance and CD to web-client directory and run `npm start`.
+2. Make a copy of the configbase.env file in server directory and rename it as config.env.
+3. Add connection string to config.env file in server directory. 
+4. CD to server directory and run `npm start`.
+5. Open a new terminal instance and CD to web-client directory and run `npm start`.
